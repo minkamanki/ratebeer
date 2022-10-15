@@ -72,3 +72,7 @@ group :test do
 end
 
 gem "pg", "~> 1.4"
+
+group :development, :test do
+  gem 'pry-byebug'
+end
