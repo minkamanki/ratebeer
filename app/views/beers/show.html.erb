@@ -21,9 +21,9 @@
     Beer has not yet been rated!
     <% else %>
       <% if @beer.ratings.count > 1 %>
-        Beer has <%= @beer.ratings.count%> ratings with an average of <%= @beer.average_rating%>
+        Beer has <%= @beer.ratings.count%> ratings with an average of <%= @beer.average_rating%>.
       <% else %>
-        Beer has 1 rating <%= @beer.ratings.first.score%> 
+        Beer has 1 rating: <%= @beer.ratings.first.score%>.
       <% end %>
   <% end %>
 </p>
@@ -31,4 +31,4 @@
 
 <%= link_to 'Edit', edit_beer_path(@beer) %> |
 <%= link_to 'All', beers_path %>
-<%= button_to 'Destroy', @beer, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to 'Destroy', @beer, method: :delete, form: { data: { turbo_confirm: "Do you want to remove #{@beer.to_s}?" } } %>

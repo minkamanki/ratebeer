@@ -9,7 +9,7 @@
    <li> 
       <p>
         <%= rating.to_s %>
-        <%= button_to 'Delete', rating, method: :delete %> 
+        <%= button_to 'Delete', rating, method: :delete, form: { data: { turbo_confirm: "Do you want to remove #{rating.to_s}?" } }%> 
       </p>
     </li>
  <% end %>
