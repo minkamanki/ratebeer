@@ -3,8 +3,16 @@
 <%= render @user %>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+<p> Has made <%= pluralize(@user.ratings.count, 'rating') %> with an average of <%= @user.average_rating %></p>
 
-  <%= button_to "Destroy this user", @user, method: :delete %>
+<p>
+  <strong>Ratings:</strong>
+  <% @user.ratings.each do |rating| %>
+    <li> 
+      <%= rating.to_s %> 
+      <%= link_to 'Delete', rating, method: :delete, form: { data: { turbo_confirm: "Do you want to remove #{rating.to_s}?" } }%> 
+    </li>
+  <% end %>
+</p>
+  <%= link_to "Edit this user", edit_user_path(@user) %>
 </div>
