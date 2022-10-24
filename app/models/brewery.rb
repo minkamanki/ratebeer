@@ -12,7 +12,7 @@ class Brewery < ApplicationRecord
       errors.add(:year, "can't be in the future")
     end
   end
-                              
+
   def print_report
     puts name
     puts "established at year #{year}"

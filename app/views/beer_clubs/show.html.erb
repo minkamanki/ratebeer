@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @beer_club %>
+<p>
+  <strong>Members:</strong>
+  <% if @beer_club.members.count > 0 %>  
+    <%  @beer_club.members.each do |member| %>
+      <li> 
+         <%= link_to member.username, member %> 
+      </li>
+    <% end %>
+  <% else %>
+    <p>No any members yet</p>
+  <% end %>
+
+</p>
+<div>
+  <%= link_to "Edit this beer club", edit_beer_club_path(@beer_club) %> |
+  <%= link_to "Back to beer clubs", beer_clubs_path %>
+
+  <%= button_to "Destroy this beer club", @beer_club, method: :delete %>
+</div>
