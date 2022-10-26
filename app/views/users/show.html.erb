@@ -29,8 +29,9 @@
    <p>Not in any clubs </p>
   <% end %>
 </p>
-  <%= link_to "Edit this user", edit_user_path(@user) %>
+
   <% if @user == current_user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %>
     <%= button_to 'Delete your account', @user, method: :delete, form: { data: { turbo_confirm: "Do you want to delete your account?" } } %>
   <% end %>
 </div>
