@@ -5,12 +5,10 @@ class Brewery < ApplicationRecord
   validates :name, presence: true, allow_blank: false
   validates :year, numericality: { greater_than_or_equal_to: 1040,
                                    only_integer: true }
-  validate :year_cannot_be_in_the_future, on: :create
+  validate :year_not_greater_than_this_year, on: :create
 
-  def year_cannot_be_in_the_future
-    if year.present? && year > Date.today.year
-      errors.add(:year, "can't be in the future")
-    end
+  def year_not_greater_than_this_year
+    errors.add(:year, "can't be greater than current year") if year > Time.now.year
   end
 
   def print_report
@@ -22,5 +20,9 @@ class Brewery < ApplicationRecord
   def restart
     self.year = 2022
     puts "changed year to #{year}"
+  end
+
+  def to_s
+    name
   end
 end

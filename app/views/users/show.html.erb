@@ -9,14 +9,25 @@
   <strong>Ratings:</strong>
 <ul>
   <% @user.ratings.each do |rating| %>
-    <li><%= "#{rating.to_s}" %>
+    <li><%= link_to "#{rating.to_s}", rating.beer %>
       <% if @user == current_user %>
         <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
       <% end %>
     </li>
   <% end %>
 </ul>
-
+<p>
+<strong>Facorite beer:</strong>
+<%= @user.favorite_beer %>
+</p>
+<p>
+<strong>Facorite beer style:</strong>
+<%= @user.favorite_style %>
+</p>
+<p>
+<strong>Facorite brewery:</strong>
+<%= @user.favorite_brewery%>
+</p>
 <p>
 <strong>Beer Clubs:</strong>
   <% if @user.beer_clubs.count > 0 %>

@@ -4,6 +4,7 @@ class Beer < ApplicationRecord
   has_many :ratings, dependent: :destroy
   has_many :raters, -> { distinct }, through: :ratings, source: :user
   validates :name, presence: true, allow_blank: false
+  validates :style, presence: true, allow_blank: false
 
   def to_s
     "#{name}: #{brewery.name}"
