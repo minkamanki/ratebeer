@@ -6,12 +6,12 @@ FactoryBot.define do
     end
   
     factory :brewery do
-      name { "anonymous" }
+      name { "TestBrewery" }
       year { 1900 }
     end
   
     factory :beer do
-      name { "anonymous" }
+      name { "TestBeer" }
       style { "Lager" }
       brewery # olueeseen liittyvä panimo luodaan brewery-tehtaalla
     end

@@ -3,7 +3,7 @@
 <p>
   <%= link_to "Add New Raiting", new_rating_path %>
 </p>
-
+<p>Number of ratings: <%= @ratings.count %></p>
 <ul>
  <% @ratings.each do |rating| %>
    <li> 
