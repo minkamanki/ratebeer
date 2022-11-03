@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<div>
+<p> Has made <%= pluralize(@user.ratings.count, 'rating') %> with an average of <%= @user.average_rating %></p>
+
+<p>
+  <strong>Ratings:</strong>
+<ul>
+  <% @user.ratings.each do |rating| %>
+    <li><%= link_to "#{rating.to_s}", rating.beer %>
+      <% if @user == current_user %>
+        <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<p>
+<strong>Favorite beer:</strong>
+<%= @user.favorite_beer %>
+</p>
+<p>
+<strong>Favorite beer style:</strong>
+<%= @user.favorite_style %>
+</p>
+<p>
+<strong>Favorite brewery:</strong>
+<%= @user.favorite_brewery%>
+</p>
+<p>
+<strong>Beer Clubs:</strong>
+  <% if @user.beer_clubs.count > 0 %>
+    <% @user.beer_clubs.each do |club| %>
+      <li> 
+        <%= link_to club.name, club %> 
+      </li>
+    <% end %>
+  <% else %>
+   <p>Not in any clubs </p>
+  <% end %>
+</p>
+
+  <% if @user == current_user %>
+    <%= link_to "Edit this user", edit_user_path(@user) %>
+    <%= button_to 'Delete your account', @user, method: :delete, form: { data: { turbo_confirm: "Do you want to delete your account?" } } %>
+  <% end %>
+</div>

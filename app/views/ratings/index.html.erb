@@ -3,13 +3,12 @@
 <p>
   <%= link_to "Add New Raiting", new_rating_path %>
 </p>
-
+<p>Number of ratings: <%= @ratings.count %></p>
 <ul>
  <% @ratings.each do |rating| %>
    <li> 
       <p>
-        <%= rating.to_s %>
-        <%= button_to 'Delete', rating, method: :delete, form: { data: { turbo_confirm: "Do you want to remove #{rating.to_s}?" } }%> 
+        <%= rating.to_s %> -- from user <%= link_to rating.user.username, rating.user%>
       </p>
     </li>
  <% end %>
