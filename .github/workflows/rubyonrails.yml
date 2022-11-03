@@ -35,3 +35,21 @@ jobs:
           bundler-cache: true
       - name: Run tests
         run: bundle exec rspec
+      - name: RuboCop Linter Action
+        uses: andrewmcodes-archive/rubocop-linter-action@v3.3.0
+        with:
+          action_config_path: .github/config/rubocop_linter_action.yml
+          exit_on_failure: true
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+     - name: Checkout code
+       uses: actions/checkout@v3
+     - name: Install Ruby and gems
+       uses: ruby/setup-ruby@v1
+       with:
+         bundler-cache: true
+     - name: RuboCop Linter Action
+       uses: andrewmcodes-archive/rubocop-linter-action@v3.3.0
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
